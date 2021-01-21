@@ -1,0 +1,6 @@
+{
+  "managed_words": ["test"],
+  "dictionary": {
+    "test": ["Test passed."]
+  }
+}

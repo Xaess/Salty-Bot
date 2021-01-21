@@ -1,0 +1,17 @@
+{
+  "bot_token": "",
+  "command_prefix": "",
+  "reply_percentage": 100,
+  "preconfigured_channels": {
+    "logs": "",
+    "announcement_channel": ""
+  },
+  "preconfigured_messages": {
+    "hello_world": "",
+    "unknown_command_message": ""
+  },
+  "dictionary": {
+    "location": ""
+  },
+  "jobs_location": "./jobs"
+}

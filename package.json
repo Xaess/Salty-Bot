@@ -1,0 +1,27 @@
+{
+  "name": "salty-bot",
+  "version": "1.0.0",
+  "description": "Simple bot reacting to users' messages.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xaess/Salty-Bot.git"
+  },
+  "keywords": [
+    "discord-bot",
+    "nodejs"
+  ],
+  "author": "Xaess",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Xaess/Salty-Bot/issues"
+  },
+  "homepage": "https://github.com/Xaess/Salty-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
