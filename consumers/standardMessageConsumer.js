@@ -1,4 +1,5 @@
 const properties = require("../properties.json");
+const Discord = require("discord.js");
 exports.StandardMessageConsumer = class StandardMessageConsumer {
   /**
    *
@@ -17,6 +18,10 @@ exports.StandardMessageConsumer = class StandardMessageConsumer {
    * @param {object} message
    */
   replyToMessage(message) {
+    if (message.channel instanceof Discord.DMChannel) {
+      message.reply(properties.preconfigured_messages.dm_reply);
+      return;
+    }
     const replyRand = Math.floor(Math.random() * 100);
     if (replyRand > properties.reply_percentage) return;
     let selectedWord = null;
@@ -36,8 +41,7 @@ exports.StandardMessageConsumer = class StandardMessageConsumer {
     }
     if (selectedWord === null) return;
     const channel = message.channel;
-    // message.reply(this.pickReplyForKeyword(selectedWord));
-    // this.client.channels.cache.get(channel)
+
     channel.send(this.pickReplyForKeyword(selectedWord));
   }
 
@@ -65,9 +69,7 @@ exports.StandardMessageConsumer = class StandardMessageConsumer {
     const matchingWords = [];
 
     for (let word of words) {
-      if (this.supportedKeywords.indexOf(word) >= 0) {
-        matchingWords.push(word);
-      }
+      if (this.supportedKeywords.indexOf(word) >= 0) matchingWords.push(word);
     }
 
     if (matchingWords.length > 0) {
@@ -83,7 +85,17 @@ exports.StandardMessageConsumer = class StandardMessageConsumer {
    *
    * @param {string} messageContent
    */
-  selectKeywordOrExpressionFromManagedWords(messageContent) {
-    // TODO: write the code!
+  selectKeywordOrExpressionFromSupportedWords(messageContent) {
+    const messageString = messageContent.toLowerCase();
+    const matchingExpressions = [];
+    for (let expression of this.supportedKeywords) {
+      if (messageString.indexOf(expression) >= 0)
+        matchingExpressions.push(expression);
+    }
+    if (matchingExpressions.length > 0) {
+      let expressionId = Math.floor(Math.random() * matchingExpressions.length);
+      return matchingExpressions[expressionId];
+    }
+    return null;
   }
 };

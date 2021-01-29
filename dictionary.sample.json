@@ -1,6 +1,7 @@
 {
-  "managed_words": ["test"],
-  "dictionary": {
+  "behavior": "message",
+  "supported_keywords": ["test"],
+  "content": {
     "test": ["Test passed."]
   }
 }

@@ -1,6 +1,6 @@
 {
   "bot_token": "",
-  "command_prefix": "",
+  "command_prefix": "!",
   "reply_percentage": 100,
   "preconfigured_channels": {
     "logs": "",
@@ -8,10 +8,11 @@
   },
   "preconfigured_messages": {
     "hello_world": "",
-    "unknown_command_message": ""
+    "unknown_command_message": "",
+    "dm_reply": ""
   },
   "dictionary": {
-    "location": ""
+    "location": "./dictionary.json"
   },
   "jobs_location": "./jobs"
 }

@@ -1,5 +1,8 @@
 const properties = require("./properties.json");
+const crontab = require("./crontab.json");
 const Discord = require("discord.js");
+var Cron = require("node-cron");
+
 const StandardMessageConsumer = require("./consumers/standardMessageConsumer");
 const CommandMessageConsumer = require("./consumers/commandMessageConsumer");
 
@@ -29,6 +32,15 @@ bot.on("ready", () => {
     channel.send(properties.preconfigured_messages.hello_world);
   } catch (error) {
     console.error(error);
+  }
+
+  for (let job of crontab.jobs) {
+    if ("message" === job.type)
+      Cron.schedule(job.cron, () => {
+        let channel = bot.channels.cache.get(announcementChannelId);
+        channel.send(job.value);
+      });
+    else console.error(`Jobs of type ${job.type} are not supported yet.`);
   }
 });
 
